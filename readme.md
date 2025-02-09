@@ -1,26 +1,11 @@
-# Digital Business Card - Self-Hosted
+**How to Create and Host Your Own Digital Business Card Using GitHub Pages**
 
-This project provides a step-by-step guide to creating and hosting your own **digital business card** at home using a simple **HTML page** and serving it through a **local web server**.
+## **Step 1: Create the Digital Business Card (HTML File)**
 
-## **Features**
-- Static HTML business card page
-- QR code generation for easy sharing
-- Self-hosted using Python or Nginx
-- Optional public access via port forwarding & dynamic DNS
+We will create a simple HTML file that serves as your digital business card.
 
-## **Prerequisites**
-- A computer, Raspberry Pi, or home server
-- Basic knowledge of using the terminal/command prompt
-- Installed software:
-  - Python 3 (for quick hosting and QR code generation)
-  - Nginx (for long-term hosting, optional)
-  - pip package manager
-
-## **Setup Instructions**
-
-### **Step 1: Create the Digital Business Card**
-1. Open a text editor and create a new file `index.html`.
-2. Copy and paste the following HTML template:
+1. Open a text editor (e.g., Notepad++, VS Code, or nano on Linux).
+2. Copy and paste the following HTML code into a new file:
 
 ```html
 <!DOCTYPE html>
@@ -50,66 +35,43 @@ This project provides a step-by-step guide to creating and hosting your own **di
 </body>
 </html>
 ```
+
 3. Save the file as `index.html`.
 
-### **Step 2: Host the File on Your Local Network**
-#### **Option 1: Using Python (Quick Setup)**
-1. Open a terminal or command prompt.
-2. Navigate to the folder containing `index.html`:
-   ```sh
-   cd /path/to/your/file
-   ```
-3. Start a simple web server:
-   ```sh
-   python3 -m http.server 8000
-   ```
-4. Access your business card at:  
-   `http://your-local-ip:8000`
+## **Step 2: Host the File Using GitHub Pages**
 
-#### **Option 2: Using Nginx (Better for Long-Term Hosting)**
-1. Install Nginx:
-   ```sh
-   sudo apt update && sudo apt install nginx -y
+1. Create a **GitHub account** (if you don’t already have one).
+2. **Create a new repository** on GitHub and name it (e.g., `digital-business-card`).
+3. Inside the repository, **upload your `index.html` file**.
+4. Go to **Settings > Pages** in your repository.
+5. Under the **Source** section, select `main` (or the branch where you uploaded `index.html`).
+6. Click **Save**.
+7. GitHub will generate a link like:
    ```
-2. Move your `index.html` file to the Nginx web root directory:
-   ```sh
-   sudo mv index.html /var/www/html/
+   https://yourusername.github.io/digital-business-card/
    ```
-3. Restart Nginx:
-   ```sh
-   sudo systemctl restart nginx
-   ```
-4. Access your digital business card at:  
-   `http://your-local-ip/`
+8. Your business card is now publicly available!
 
-### **Step 3: Generate a QR Code for Easy Sharing**
-1. Install the required package:
+## **Step 3: Generate a QR Code for Easy Sharing**
+
+To make sharing easier, generate a QR code that links to your GitHub Pages site.
+
+1. Install the `qrcode` Python package (if not installed):
    ```sh
    pip install qrcode[pil]
    ```
-2. Run the following script to generate a QR code:
+2. Run the following script to generate the QR code:
    ```python
    import qrcode
-   img = qrcode.make("http://your-local-ip:8000")
+   url = "https://yourusername.github.io/digital-business-card/"  # Replace with your actual GitHub Pages URL
+   img = qrcode.make(url)
    img.save("business_card_qr.png")
    ```
-3. Print or share the generated QR code image (`business_card_qr.png`).
-
-### **Step 4: Make It Publicly Accessible (Optional)**
-1. **Find your local IP address** by running:
-   ```sh
-   ipconfig (Windows) or ifconfig (Linux/macOS)
-   ```
-2. **Set up Port Forwarding** on your router to forward traffic on port `8000` (or `80` for Nginx) to your local machine.
-3. **Use a Dynamic DNS service** (like No-IP) if your IP address changes frequently.
-4. **Secure your site with HTTPS** using Let's Encrypt:
-   ```sh
-   sudo apt install certbot python3-certbot-nginx
-   sudo certbot --nginx
-   ```
+3. Print or share the QR code image (`business_card_qr.png`).
 
 ## **Conclusion**
-You now have a **self-hosted digital business card** that can be shared via QR code or a web link. Enjoy full control over your online presence without third-party services!
+
+Now you have a **self-hosted digital business card** using GitHub Pages that you can share via QR code or a direct link. Would you like further customization or help with automation?
 
 ---
 
